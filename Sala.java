@@ -27,6 +27,6 @@ public class Sala extends Turma {
 
     @Override
     public String toString() {
-        return "Sala : \n[Número da Sala : " + numSala + "\nProfessor Ministrante : " + profMinistrante + "]";
+        return "Sala : \n[Número da Sala : " + numSala + "\nProfessor Ministrante : " + profMinistrante + "] \n\n";
     }
 }

@@ -127,7 +127,11 @@ public class Aluno extends Usuario {
 
     @Override
     public String toString() {
-        return "Aluno: " + getNome()+ "\n[EmailAcad : " + emailAcad + "\nCurso: " + curso + "\nTurmas :" + turmas.toString() +
-            "\nDisciplinas : " + disciplinas.toString() + "\nSalas : " + salas.toString() + "]";
+        return "\nAluno: " + getNome()+ " - Matricula : " + super.getMatricula() + "\n[EmailAcad : " + emailAcad + "\nCurso: " + curso + "\nTurmas :" + turmas.toString() +
+            "\nDisciplinas : " + disciplinas.toString() + "\nSalas : " + salas.toString() +"]";
+    }
+    public String toStringDetailed() {
+        return "\nAluno: " + getNome()+ " - Matricula : " + super.getMatricula() + "\n[EmailAcad : " + emailAcad + "\nCurso: " + curso + "\nTurmas :" + turmas.toString() +
+            "\nDisciplinas : " + disciplinas.toString() + "\nSalas : " + salas.toString() + super.toString() + "]";
     }
 }

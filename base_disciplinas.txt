@@ -1,0 +1,20 @@
+"Introdução à Computação",001,60,"Princípios da Computação",4,null,null,null
+"Algoritmos e Estruturas de Dados",002,80,"Fundamentos de Algoritmos",4,null,null,null
+"Arquitetura de Computadores",003,70,"Organização de Computadores",3,null,null,null
+"Redes de Computadores",004,75,"Comunicação de Dados",3,null,null,null
+"Sistemas Operacionais",005,70,"Princípios de Sistemas peracionais",3,null,null,null
+"Banco de Dados",006,80,"Modelagem de Dados",4,null,null,null
+"Engenharia de Software",007,75,"Desenvolvimento de Software",4,null,null,null
+"Inteligência Artificial",008,70,"Fundamentos de Inteligência Artificial",3,null,null,null
+"Matemática Discreta",009,60,"Teoria dos Grafos",4,null,null,null
+"Cálculo",010,90,"Cálculo Diferencial e Integral",5,null,null,null
+"Álgebra Linear",011,70,"Álgebra Linear Aplicada",3,null,null,null
+"Física",012,80,"Física Geral",4,null,null,null
+"Química",013,70,"Química Geral",3,null,null,null
+"Biologia",014,60,"Biologia Celular",4,null,null,null
+"Estatística",015,75,"Estatística Descritiva",3,null,null,null
+"História da Computação",016,60,"Evolução Histórica da Computação",3,null,null,null
+"Filosofia da Ciência",017,50,"Introdução à Filosofia da Ciência",2,null,null,null
+"Ética Profissional",018,60,"Ética na Computação",3,null,null,null
+"Comunicação e Expressão",019,50,"Comunicação Oral e Escrita",2,null,null,null
+"Projeto Integrador",020,80,"Projeto Integrador de Sistemas",4,null,null,null

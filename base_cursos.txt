@@ -1,0 +1,16 @@
+"Ciência da Computação",001
+"Engenharia de Software",002
+"Engenharia Mecatrônica",003
+"Medicina Veterinária",004
+"Medicina",004
+"Odontologia",005
+"Ciência de Dados & Inteligência Artificial",006
+"Engenharia Elétrica",007
+"Engenharia de Produção",008
+"Design Digital",009
+"Marketing",010
+"Publicidade & Propaganda", 011
+"História",012
+"Filosofia",013
+"Matemática",014
+"Física", 015

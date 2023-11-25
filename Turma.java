@@ -103,6 +103,4 @@ public class Turma extends Disciplina {
         return "Turma [Id : " + id + "\nVagas : " + vagas + "\nVagas Locadas : " + vagasLocadas + "\nAlunos: [" + alunos.toString() + "]\n"
                 + "\nProfessor : " + professor + "znLotada : " + lotadaString + "]";
     }
-
-    
 }

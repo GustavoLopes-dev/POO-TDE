@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 
 public class Curso {
+    private int id;
     private String titulo;
     private final int LIMITE_ALUNOS = 200;
     private ArrayList<Aluno> alunos = new ArrayList<>();
 
-    public Curso(String titulo) {
+    public Curso(String titulo, int id) {
         this.titulo = titulo;
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -38,4 +40,11 @@ public class Curso {
     public int getVagasRestantes() {
         return LIMITE_ALUNOS - alunos.size();
     }
+
+    @Override
+    public String toString() {
+        return "Curso [ID : " + id + ", Titulo : " + titulo + ", Aluno : " + alunos.toString() + "]";
+    }
+
+    
 }

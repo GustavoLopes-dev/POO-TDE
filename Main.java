@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -53,6 +56,44 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
 
+        try (BufferedReader reader = new BufferedReader(new FileReader("base_cursos.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                String titulo = parts[0].replaceAll("\"", "").trim();
+                int id = Integer.parseInt(parts[1].trim());
+                Curso curso = new Curso(titulo, id);
+                cursos.add(curso);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Imprimir os cursos
+        /**
+         * for (Curso curso : cursos) {
+         * System.out.println(curso.toString());
+         * }
+         */
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("base_disciplinas.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Disciplina disciplina = criarDisciplina(line);
+                disciplinas.put(disciplina.getCodigo(), disciplina);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Agora tem um mapa de disciplinas
+
+        /**
+         * for (Map.Entry<Integer, Disciplina> entry : disciplinas.entrySet()) {
+         * System.out.println(entry.getKey() + ": " + entry.getValue() + "\n\n");
+         * }
+         */
+
         int etapa = 0;
         int selectOut = 0;
         int selectIn = 0;
@@ -83,7 +124,7 @@ public class Main {
 
                     case GESTAO_TURMAS:
                         etapa += 1;
-                        // menuGestaoTurmas(input);
+                        menuGestaoTurmas(input);
                         break;
 
                     case GESTAO_DISCIPLINAS:
@@ -219,9 +260,12 @@ public class Main {
         }
 
         Integer matricula = null;
-        System.out.print("MATRICULA (3 DÍGITOS): ");
-        matricula = input.nextInt();
-        
+        System.out.print("MATRICULA (Opcional - 3 DÍGITOS): ");
+        String matriculaInput = input.nextLine().trim();
+        if (!matriculaInput.isEmpty()) {
+            matricula = Integer.parseInt(matriculaInput);
+        }
+
         String email = null;
         System.out.print("EMAIL (Obrigatório): ");
         email = input.nextLine();
@@ -229,20 +273,19 @@ public class Main {
             throw new IllegalArgumentException("Email não pode ser nulo.");
         }
 
-        System.out.print("\nEMAIL ACADÊMICO (Opcional): ");
+        System.out.print("EMAIL ACADÊMICO (Opcional): ");
         String emailAcad = input.nextLine();
 
         Aluno aluno = new Aluno(nomeCompleto, cpf, matricula, email, emailAcad, null, null, null, null);
-        alunos.put(matricula, aluno);
+        if (aluno.getMatricula() == null) {
+            aluno.setMatricula(aluno.gerarMatricula());
+        }
+
+        alunos.put(aluno.getMatricula(), aluno);
+
         if (turmas != null && turmas.size() > 0) {
-
             System.out.println("\nTURMA DISPONÍVEIS: ");
-            for (Entry<Integer, Turma> entry : turmas.entrySet()) {
-                Integer chave = entry.getKey();
-                Turma valor = entry.getValue();
-                System.out.println("ID" + chave + ", Valor: " + valor.toString());
-            }
-
+            visualizarTurmas();
             System.out.println("SELECIONE O ID PARA A TURMA QUE O USUÁRIO SERÁ VINCULADO: ");
             Integer idSelect = input.nextInt();
 
@@ -253,15 +296,13 @@ public class Main {
             } else {
                 System.out.println("ID de turma inválido. Não foi possível vincular o aluno.");
             }
+        } else {
+            System.out.println("NÃO HÁ TURMAS CADASTRADAS NO MOMENTO ");
         }
 
-        if (disciplinas != null) {
+        if (disciplinas != null && disciplinas.size() > 0) {
             System.out.println("\nDISCIPLINAS DISPONÍVEIS: ");
-            for (Entry<Integer, Disciplina> entry : disciplinas.entrySet()) {
-                Integer chave = entry.getKey();
-                Disciplina valor = entry.getValue();
-                System.out.println("ID" + chave + ", Valor: " + valor.toString());
-            }
+            visualizarDisciplinas();
 
             System.out.println("SELECIONE O ID PARA A DISCIPLINA QUE O USUÁRIO SERÁ VINCULADO: ");
             Integer idSelect = input.nextInt();
@@ -274,9 +315,11 @@ public class Main {
                 System.out.println("ID de disciplina inválido. Não foi possível vincular o aluno.");
             }
 
+        } else {
+            System.out.println("NÃO HÁ DISCIPLINAS CADASTRADAS NO MOMENTO ");
         }
 
-        if (salas != null) {
+        if (salas != null && salas.size() > 0) {
             System.out.println("\nSALAS DISPONÍVEIS: ");
             for (Entry<Integer, Sala> entry : salas.entrySet()) {
                 Integer chave = entry.getKey();
@@ -295,6 +338,8 @@ public class Main {
                 System.out.println("ID de sala inválido. Não foi possível vincular o aluno.");
             }
 
+        } else {
+            System.out.println("NÃO HÁ SALAS CADASTRADAS NO MOMENTO ");
         }
 
     }
@@ -487,26 +532,33 @@ public class Main {
             // Exibir o aluno selecionado
             System.out.println("Aluno selecionado para edição: " + alunoParaEditar.getNome());
 
+            String novoNome = null;
             // Agora você pode permitir a edição de diferentes campos do aluno, por exemplo:
             System.out.print("Digite o novo nome do aluno (ou pressione Enter para manter o mesmo): ");
-            String novoNome = input.nextLine();
+            novoNome = input.nextLine();
             if (!novoNome.isEmpty()) {
                 alunoParaEditar.setNome(novoNome);
+            } else {
+                throw new IllegalArgumentException("Nome não pode ser nulo.");
             }
-
+            
+            String novoEmail = null;
             System.out.print("Digite o novo email do aluno (ou pressione Enter para manter o mesmo): ");
-            String novoEmail = input.nextLine();
+            novoEmail = input.nextLine();
             if (!novoEmail.isEmpty()) {
                 alunoParaEditar.setEmail(novoEmail);
+            } else {
+                throw new IllegalArgumentException("Email não pode ser nulo.");
             }
 
             System.out.print("Digite o novo email acadêmico do aluno (ou pressione Enter para manter o mesmo): ");
             String novoEmailAcad = input.nextLine();
             if (!novoEmailAcad.isEmpty()) {
                 alunoParaEditar.setEmailAcad(novoEmailAcad);
+            } else {
+                alunoParaEditar.setEmail(alunoParaEditar.getEmail());
             }
 
-            // Adicione outros campos conforme necessário
 
             System.out.println("Dados do aluno atualizados com sucesso: " + alunoParaEditar.toString());
         } else {
@@ -536,7 +588,7 @@ public class Main {
         if (alunos.containsKey(idSelecionado)) {
             Aluno alunoSelecionado = alunos.get(idSelecionado);
             // Agora você pode usar 'alunoSelecionado' para realizar a matrícula no curso
-            System.out.println("Dados: [\n" + alunoSelecionado.toString() + "]");
+            System.out.println("\nDados: [\n" + alunoSelecionado.toStringDetailed() + "]");
         }
 
     }
@@ -787,7 +839,7 @@ public class Main {
     }
 
     public static void visualizarTurmas() {
-        if (turmas != null) {
+        if (turmas != null && turmas.size() > 0) {
             System.out.println("\nTURMAS EXISTENTES: ");
             for (Entry<Integer, Turma> entry : turmas.entrySet()) {
                 Integer chave = entry.getKey();
@@ -796,7 +848,7 @@ public class Main {
             }
 
         } else {
-            throw new NullPointerException("Turmas não pode estar vazia.");
+            throw new NullPointerException("Turmas está vazia. Crie turmas.\n");
         }
     }
 
@@ -997,5 +1049,16 @@ public class Main {
 
     public static void menuGestaoDisciplinas() {
 
+    }
+
+    private static Disciplina criarDisciplina(String line) {
+        String[] parts = line.split(",");
+        String titulo = parts[0].replaceAll("\"", "").trim();
+        int codigo = Integer.parseInt(parts[1].trim());
+        int cargaHoraria = Integer.parseInt(parts[2].trim());
+        String descricao = parts[3].replaceAll("\"", "").trim();
+        int aulasSemana = Integer.parseInt(parts[4].trim());
+
+        return new Disciplina(titulo, codigo, cargaHoraria, descricao, aulasSemana, null, null, null);
     }
 }

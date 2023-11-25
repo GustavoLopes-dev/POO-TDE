@@ -73,7 +73,7 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return "Disciplina: \n[Titulo : " + titulo + "\nCodigo : " + codigo + "\nCarga Horaria=" + cargaHoraria +
+        return "\nDisciplina: \n[Titulo : " + titulo + "\nCodigo : " + codigo + "\nCarga Horaria=" + cargaHoraria +
                 "\nDescrica : " + descricao + "\n Aulas por semana : " + aulasSemana +
                 "\nProfessores Ministrantes " + professoresMinistrantes.toString() + "\nSalas : " + salas +
                 "\nTurmas : " + turmas + "]";
