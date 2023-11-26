@@ -36,16 +36,26 @@ public class Window extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton botaoClicado = (JButton) e.getSource();
-            if (botaoClicado.getText().equals("Gestão de Alunos")) {
-                new JanelaGestaoAlunos();
-            } else if (botaoClicado.getText().equals("Gestão de Professores")) {
-                new JanelaGestaoProfessores();
-            } else if (botaoClicado.getText().equals("Gestão de Turmas")) {
-                new JanelaGestaoTurmas();
-            } else if (botaoClicado.getText().equals("Gestão de Disciplina")) {
-                new JanelaGestaoDisciplinas();
+
+            switch (botaoClicado.getText()) {
+                case "Gestão de Alunos":
+                    abrirJanela(new JanelaGestaoAlunos());
+                    break;
+                case "Gestão de Professores":
+                    abrirJanela(new JanelaGestaoProfessores());
+                    break;
+                case "Gestão de Turmas":
+                    abrirJanela(new JanelaGestaoTurmas());
+                    break;
+                case "Gestão de Disciplina":
+                    abrirJanela(new JanelaGestaoDisciplinas());
+                    break;
             }
         }
+    }
+
+    private void abrirJanela(JFrame janela) {
+        janela.setVisible(true);
     }
 
     public static void main(String[] args) {

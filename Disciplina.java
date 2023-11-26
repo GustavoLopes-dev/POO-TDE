@@ -71,6 +71,52 @@ public class Disciplina {
         return turmas;
     }
 
+    
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public boolean existeProfessor(int idProfessor) {
+        for (Professor professor : professoresMinistrantes) {
+            if (professor.getMatricula() == idProfessor) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Professor getProfessorById(int idProfessor) {
+        for (Professor professor : professoresMinistrantes) {
+            if (professor.getMatricula() == idProfessor) {
+                return professor;
+            }
+        }
+        return null; // Retornar null se o professor não for encontrado
+    }
+    
+    public void removerProfessorMinistrante(Professor professor) {
+        professoresMinistrantes.remove(professor);
+    }
+
+    public boolean existeTurma(int idTurma) {
+        for (Turma turma : turmas) {
+            if (turma.getId() == idTurma) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void adicionarTurma(Turma turma) {
+        turmas.add(turma);
+    }
+
+    public void removerTurma(int idTurma) {
+        turmas.removeIf(turma -> turma.getId() == idTurma);
+    }
+    
+
     @Override
     public String toString() {
         return "\nDisciplina: \n[Titulo : " + titulo + "\nCodigo : " + codigo + "\nCarga Horaria=" + cargaHoraria +

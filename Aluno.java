@@ -125,6 +125,14 @@ public class Aluno extends Usuario {
         }
     }
 
+    public void removerCurso(Curso curso) {
+        if (this.curso.equals(curso)) {
+            this.curso = null;
+            System.out.println("Curso excluido de aluno ID: " + getMatricula());
+        } else {
+            System.out.println("Falha na exclusão.");
+        }
+    }
     @Override
     public String toString() {
         return "\nAluno: " + getNome()+ " - Matricula : " + super.getMatricula() + "\n[EmailAcad : " + emailAcad + "\nCurso: " + curso + "\nTurmas :" + turmas.toString() +

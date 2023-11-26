@@ -5,7 +5,7 @@ public class Professor extends Usuario {
     private String emailAcad;
     private String escola;
     private boolean alocado;
-    private List<Disciplina> disciplinas;
+    private List<Disciplina> disciplinas = new ArrayList<>();
     private ArrayList<Turma> turmas = new ArrayList<>();
 
     public Professor(String nome, String cpf, Integer matricula, String email, List<Disciplina> disciplinas,

@@ -20,16 +20,21 @@ public class Curso {
     }
 
     public String listarAlunos() {
-        // Retornar uma representação mais controlada da lista de alunos (por exemplo, formatada)
-        return alunos.toString();
+        StringBuilder result = new StringBuilder("Alunos no curso " + titulo + ":\n");
+
+        for (Aluno aluno : alunos) {
+            result.append(aluno.toString()).append("\n");
+        }
+
+        return result.toString();
     }
 
     public void adicionarAluno(Aluno aluno) {
-        if (aluno != null && alunos.size() < LIMITE_ALUNOS) {
+        if (aluno != null && !alunos.contains(aluno) && alunos.size() < LIMITE_ALUNOS) {
             alunos.add(aluno);
             System.out.println("Aluno " + aluno.getNome() + " adicionado ao curso " + titulo + ".");
         } else {
-            System.out.println("Limite de alunos atingido para o curso " + titulo + ". Não foi possível adicionar o aluno.");
+            System.out.println("Não foi possível adicionar o aluno ao curso " + titulo + ".");
         }
     }
 
@@ -41,9 +46,19 @@ public class Curso {
         return LIMITE_ALUNOS - alunos.size();
     }
 
+    public int getId() {
+        return id;
+    }
+
+
+    
+    public ArrayList<Aluno> getAlunos() {
+        return alunos;
+    }
+
     @Override
     public String toString() {
-        return "Curso [ID : " + id + ", Titulo : " + titulo + ", Aluno : " + alunos.toString() + "]";
+        return "Curso [ID : " + id + ", Titulo : " + titulo + ", Alunos : " + alunos.toString() + "]";
     }
 
     
