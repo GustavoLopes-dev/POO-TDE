@@ -2,15 +2,49 @@
 "Engenharia de Software",002
 "Engenharia Mecatrônica",003
 "Medicina Veterinária",004
-"Medicina",004
-"Odontologia",005
-"Ciência de Dados & Inteligência Artificial",006
-"Engenharia Elétrica",007
-"Engenharia de Produção",008
-"Design Digital",009
-"Marketing",010
-"Publicidade & Propaganda", 011
-"História",012
-"Filosofia",013
-"Matemática",014
-"Física", 015
+"Medicina",005
+"Odontologia",006
+"Ciência de Dados & Inteligência Artificial",007
+"Engenharia Elétrica",008
+"Engenharia de Produção",009
+"Design Digital",010
+"Marketing",011
+"Publicidade & Propaganda",012
+"História",013
+"Filosofia",014
+"Matemática",015
+"Física",016
+"Administração de Empresas",017
+"Economia",018
+"Engenharia Civil",019
+"Arquitetura e Urbanismo",020
+"Psicologia",021
+"Enfermagem",022
+"Nutrição",023
+"Biologia",024
+"Química",025
+"Sociologia",026
+"Geografia",027
+"Ciências Ambientais",028
+"Educação Física",029
+"Jornalismo",030
+"Relações Internacionais",031
+"Engenharia Química",032
+"Farmácia",033
+"Letras",034
+"Artes Cênicas",035
+"Engenharia de Telecomunicações",036
+"Ciências Políticas",037
+"Oceanografia",038
+"Engenharia Aeroespacial",039
+"Ciências da Nutrição",040
+"Bioquímica",041
+"Arqueologia",042
+"Linguística",043
+"Engenharia de Alimentos",044
+"Turismo",045
+"Gestão de Recursos Humanos",046
+"Teatro",047
+"Ciências Atuariais",048
+"Engenharia de Controle e Automação",049
+"Artes Visuais",050

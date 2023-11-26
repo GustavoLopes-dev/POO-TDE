@@ -93,7 +93,6 @@ public class Main {
         carregarAlunos(alunos);
         carregarProfessores(professores);
 
-
         // Agora tem um mapa de disciplinas
 
         /**
@@ -114,6 +113,7 @@ public class Main {
                 System.out.println(GESTAO_TURMAS + " - GESTÃO DE TURMAS");
                 System.out.println(GESTAO_DISCIPLINAS + " - GESTÃO DE DISCIPLINAS");
                 System.out.println(GESTAO_CURSOS + " - GESTÃO DE CURSOS");
+                System.out.println(IMPRESSOES + " - EXPORTAR BASE DE DADOS");
 
                 System.out.printf("OPÇÃO: ");
 
@@ -146,7 +146,8 @@ public class Main {
                         menuGestaoCursos(input);
 
                     case IMPRESSOES:
-
+                        etapa += 1;
+                        menuExportar(input);
                     default:
                         System.out.println("Opção inválida. Tente novamente.");
                         break;
@@ -824,8 +825,8 @@ public class Main {
         if (!matriculaInput.isEmpty()) {
             matricula = Integer.parseInt(matriculaInput);
         }
-       
-         String email = null;
+
+        String email = null;
         System.out.print("EMAIL (Obrigatório): ");
         email = input.nextLine();
         if (email.isEmpty()) {
@@ -1462,19 +1463,19 @@ public class Main {
 
     private static Disciplina criarDisciplina(String linha) {
         String[] parts = linha.split(",");
-        
+
         // Verificar se há pelo menos 6 partes na linha
-        if (parts.length < 6) {
+        if (parts.length < 4) {
             throw new IllegalArgumentException("Formato inválido da linha: " + linha);
         }
-    
+
         String titulo = parts[0].replaceAll("\"", "").trim();
         int codigo = Integer.parseInt(parts[1].trim());
         int cargaHoraria = Integer.parseInt(parts[2].trim());
         String descricao = parts[3].replaceAll("\"", "").trim();
         int aulasSemana = Integer.parseInt(parts[4].trim());
         // Adicione os outros atributos conforme necessário
-    
+
         return new Disciplina(titulo, codigo, cargaHoraria, descricao, aulasSemana, null, null, null);
     }
 
@@ -1514,15 +1515,14 @@ public class Main {
         return linha.toString();
     }
 
-
     public static void salvarProfessores() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("base_professores.txt"))) {
             for (Entry<Integer, Professor> entry : professores.entrySet()) {
                 Professor professor = entry.getValue();
                 writer.write(professor.getMatricula() + "," +
-                             professor.getNome() + "," +
-                             professor.getCpf() + "," +
-                             professor.getEmail() +"," + "\n");
+                        professor.getNome() + "," +
+                        professor.getCpf() + "," +
+                        professor.getEmail() + "," + "\n");
             }
             System.out.println("Professores salvos com sucesso!");
         } catch (IOException e) {
@@ -1679,26 +1679,26 @@ public class Main {
 
     private static Professor linhaParaProfessor(String linha) {
         String[] parts = linha.split(",");
-    
+
         // Verificar se há pelo menos 4 partes na linha
         if (parts.length != 4) {
             throw new IllegalArgumentException("Formato inválido da linha: " + linha);
         }
-    
+
         try {
             String nome = parts[1].replaceAll("\"", "").trim();
             String cpf = parts[2].replaceAll("\"", "").trim();
             int matricula = Integer.parseInt(parts[0].trim());
             String email = parts[3].replaceAll("\"", "").trim();
-    
+
             // Não há emailAcad neste exemplo, você pode adicioná-lo conforme necessário
-    
+
             return new Professor(nome, cpf, matricula, email, null, null);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Erro ao converter valores na linha: " + linha, e);
         }
     }
-    
+
     private static void carregarAlunos(Map<Integer, Aluno> alunos) {
         try (BufferedReader reader = new BufferedReader(new FileReader("base_alunos.txt"))) {
             String line;
@@ -1722,5 +1722,78 @@ public class Main {
         // Adicione outros atributos conforme necessário
 
         return new Aluno(nome, cpf, matricula, email, emailAcad, null, null, null, null);
+    }
+
+    public static void menuExportar(Scanner input) {
+        try {
+            Integer selec = null;
+            do {
+                System.out.println("1 - EXPORTAR BASE DE ALUNOS");
+                System.out.println("2 - EXPORTAR BASE DE PROFESSORES");
+                System.out.println("3 - EXPORTAR BASE DE CURSOS");
+                System.out.println("4 - EXPORTAR BASE DE DISCIPLINAS");
+
+                System.out.printf("OPÇÃO: ");
+                selec = input.nextInt();
+                input.nextLine();
+            } while (selec == null);
+
+            switch (selec) {
+                case 1:
+                    try {
+                        converterTxtParaCsv("base_alunos.txt", "base_alunos.csv");
+                        System.out.println("Conversão concluída com sucesso!");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
+
+                case 2:
+                    try {
+                        converterTxtParaCsv("base_professores.txt", "base_professores.csv");
+                        System.out.println("Conversão concluída com sucesso!");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                case 3: 
+                try {
+                        converterTxtParaCsv("base_cursos.txt", "base_cursos.csv");
+                        System.out.println("Conversão concluída com sucesso!");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                case 4: 
+                    try {
+                        converterTxtParaCsv("base_disciplina.txt", "base_disciplina.csv");
+                        System.out.println("Conversão concluída com sucesso!");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                default:
+                    break;
+            }
+        } catch (InputMismatchException e) {
+            System.out.println(e.getCause());
+            System.out.println(e.getLocalizedMessage());
+            System.out.println("O valor digitado não é um inteiro.");
+        }
+    }
+
+    private static void converterTxtParaCsv(String inputFile, String outputFile) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                FileWriter writer = new FileWriter(outputFile)) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Substitui as vírgulas por ponto e vírgula
+                line = line.replace(",", ";");
+                writer.write(line);
+                writer.write("\n"); // Adiciona uma quebra de linha entre as entradas
+            }
+        }
     }
 }

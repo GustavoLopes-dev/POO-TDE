@@ -18,3 +18,31 @@
 "Ética Profissional",018,60,"Ética na Computação",3,null,null,null
 "Comunicação e Expressão",019,50,"Comunicação Oral e Escrita",2,null,null,null
 "Projeto Integrador",020,80,"Projeto Integrador de Sistemas",4,null,null,null
+"Aprendizado de Máquina",021,75,"Introdução ao Aprendizado de Máquina",3,null,null,null
+"Desenvolvimento Web",022,80,"Desenvolvimento Front-end",4,null,null,null
+"Segurança Cibernética",023,70,"Segurança de Redes",3,null,null,null
+"Interação Humano-Computador",024,75,"Usabilidade e Experiência do Usuário",3,null,null,null
+"Teste de Software",025,70,"Princípios de Teste de Software",3,null,null,null
+"Ciência de Dados",026,85,"Introdução à Ciência de Dados",4,null,null,null
+"Gráficos de Computador",027,75,"Programação Gráfica",3,null,null,null
+"Sistemas Distribuídos",028,80,"Princípios de Computação Distribuída",4,null,null,null
+"Desenvolvimento de Aplicações Móveis",029,70,"Desenvolvimento de Aplicações para iOS e Android",3,null,null,null
+"Robótica",030,75,"Introdução à Robótica",3,null,null,null
+"Administração de Banco de Dados",031,80,"Gerenciamento de Banco de Dados",4,null,null,null
+"Arquitetura de Software",032,75,"Princípios de Arquitetura de Software",3,null,null,null
+"Processamento de Linguagem Natural",033,70,"Introdução ao Processamento de Linguagem Natural",3,null,null,null
+"Redes de Computadores",034,80,"Redes de Computadores Avançadas",4,null,null,null
+"Redes Neurais Artificiais",035,75,"Fundamentos de Redes Neurais",3,null,null,null
+"Computação em Nuvem",036,80,"Introdução à Computação em Nuvem",4,null,null,null
+"Recuperação de Informação",037,70,"Princípios de Recuperação de Informação",3,null,null,null
+"Práticas de Engenharia de Software",038,75,"Melhores Práticas em Desenvolvimento de Software",3,null,null,null
+"Ética da Computação",039,60,"Questões Éticas na Computação",3,null,null,null
+"Visualização de Dados",040,80,"Introdução à Visualização de Dados",4,null,null,null
+"Organização de Computadores",041,75,"Introdução à Organização de Computadores",3,null,null,null"Linguagens de Programação",042,80,"Introdução às Linguagens de Programação",4,null,null,null
+"Design Assistido por Computador",043,70,"Fundamentos de CAD",3,null,null,null
+"Segurança da Informação",044,75,"Princípios de Segurança da Informação",3,null,null,null
+"Desenvolvimento de Jogos",045,80,"Introdução ao Desenvolvimento de Jogos",4,null,null,null
+"Análise de Big Data",046,75,"Introdução ao Big Data",3,null,null,null
+"Visão Computacional",047,70,"Introdução à Visão Computacional",3,null,null,null
+"Gestão de Projetos de TI",048,80,"Gestão de Projetos em TI",4,null,null,null
+"Marketing em Mídias Sociais",049,70,"Estratégias em Marketing em Mídias Sociais",3,null,null,null"Programação de Redes",050,75,"Introdução à Programação de Redes",3,null,null,null
