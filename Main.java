@@ -149,7 +149,7 @@ public class Main {
                         etapa += 1;
                         menuExportar(input);
                     default:
-                        System.out.println("Opção inválida. Tente novamente.");
+                       // System.out.println("Opção inválida. Tente novamente.");
                         break;
                 }
             } while (selectOut != 0);
@@ -735,8 +735,8 @@ public class Main {
         // Verificar se o ID selecionado corresponde a um aluno existente
         if (alunos.containsKey(idAluno)) {
             Aluno alunoParaEditar = alunos.get(idAluno);
-            // Exibir o aluno selecionado
-            System.out.println("Aluno selecionado para edição: " + alunoParaEditar.getNome());
+            // Exibir o aluno selecionado 
+            System.out.println("Aluno selecionado paraedição: " + alunoParaEditar.getNome());
 
             String novoNome = null;
             // Agora você pode permitir a edição de diferentes campos do aluno, por exemplo:
@@ -744,8 +744,6 @@ public class Main {
             novoNome = input.nextLine();
             if (!novoNome.isEmpty()) {
                 alunoParaEditar.setNome(novoNome);
-            } else {
-                throw new IllegalArgumentException("Nome não pode ser nulo.");
             }
 
             String novoEmail = null;
@@ -753,16 +751,12 @@ public class Main {
             novoEmail = input.nextLine();
             if (!novoEmail.isEmpty()) {
                 alunoParaEditar.setEmail(novoEmail);
-            } else {
-                throw new IllegalArgumentException("Email não pode ser nulo.");
             }
 
             System.out.print("Digite o novo email acadêmico do aluno (ou pressione Enter para manter o mesmo): ");
             String novoEmailAcad = input.nextLine();
             if (!novoEmailAcad.isEmpty()) {
                 alunoParaEditar.setEmailAcad(novoEmailAcad);
-            } else {
-                System.out.println("Email antigo mantido");
             }
 
             System.out.println("Dados do aluno atualizados com sucesso: " + alunoParaEditar.toString());
@@ -1756,22 +1750,23 @@ public class Main {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
-                case 3: 
-                try {
+                    break;
+                case 3:
+                    try {   
                         converterTxtParaCsv("base_cursos.txt", "base_cursos.csv");
                         System.out.println("Conversão concluída com sucesso!");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
-                case 4: 
+                case 4:
                     try {
-                        converterTxtParaCsv("base_disciplina.txt", "base_disciplina.csv");
+                        converterTxtParaCsv("base_disciplinas.txt", "base_disciplinas.csv");
                         System.out.println("Conversão concluída com sucesso!");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    break;
 
                 default:
                     break;
