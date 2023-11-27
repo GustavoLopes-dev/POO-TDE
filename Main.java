@@ -6,11 +6,21 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import java.util.Map.Entry;
 import java.util.Random;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+
+import java.awt.*;
+import java.awt.event.*;
 
 public class Main {
     private static int idMapProf = 0;
@@ -55,6 +65,48 @@ public class Main {
     static Map<Integer, Sala> salas = new HashMap<>();
 
     static ArrayList<Curso> cursos = new ArrayList<>();
+
+    public Main() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("base_cursos.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                String titulo = parts[0].replaceAll("", "").trim();
+                int id = Integer.parseInt(parts[1].trim());
+                Curso curso = new Curso(titulo, id);
+                cursos.add(curso);
+                System.out.println(curso);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("base_cursos.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                String titulo = parts[0].replaceAll("", "").trim();
+                int id = Integer.parseInt(parts[1].trim());
+                Curso curso = new Curso(titulo, id);
+                cursos.add(curso);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("base_disciplinas.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Disciplina disciplina = criarDisciplina(line);
+                disciplinas.put(disciplina.getCodigo(), disciplina);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        carregarAlunos(alunos);
+        carregarProfessores(professores);
+    }
 
     public static void main(String[] args) {
 
